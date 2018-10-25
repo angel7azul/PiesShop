@@ -1,6 +1,8 @@
 using System;
 using Microsoft.AspNetCore.Mvc;
 using PiesShop.Models;
+using System.Linq;
+using PiesShop.ViewModels;
 
 namespace PiesShop.Controllers
 {
@@ -15,7 +17,12 @@ namespace PiesShop.Controllers
 
        public IActionResult Index()
        {
-           return View();
+           HomeViewModel model = new HomeViewModel
+           {
+               Title = "Bienvenido",
+               Pies = _pieRepository.GetAllPies().OrderBy(p => p.Name).ToList()
+           };
+           return View(model);
        }
 
        public IActionResult MisDatos()
@@ -29,6 +36,5 @@ namespace PiesShop.Controllers
        {
            return View();
        }
-
     }//del controlador
 }

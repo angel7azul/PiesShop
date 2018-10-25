@@ -1,1 +1,9 @@
-<h2>Luisito</h2>
+@model PiesShop.ViewModels.HomeViewModel
+
+<h2>@Model.Title</h2>
+
+    @foreach(var pie in Model.Pies)
+    {
+        <h1>@pie.Name</h1>
+        <h5>@pie.Price.ToString("C")</h5>
+    }
