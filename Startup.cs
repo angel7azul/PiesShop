@@ -21,6 +21,7 @@ namespace PiesShop
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddTransient<IPieRepository,MockPieRepository>();
+            
             services.AddMvc();
         }
 
@@ -38,7 +39,16 @@ namespace PiesShop
             app.UseDeveloperExceptionPage();
             app.UseStatusCodePages();
             app.UseStaticFiles(); //wwwroot/...
+            app.UseNodeModules(env);//Agregar NodeModules
             app.UseMvcWithDefaultRoute(); // services.AddMvc() Todo va en orden, mvc al final
+            /*
+            Importa el orden
+            npm install jquery
+            dotnet add package OdeToCode.UseNodeModules --version 1.0.6
+            npm install popper.js
+            npm install bootstrap
+            npm i font-awesome
+             */
         }
     }
 }
