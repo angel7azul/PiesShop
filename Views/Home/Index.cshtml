@@ -1,9 +1,18 @@
 @model HomeViewModel
 
-<h2>@Model.Title</h2>
+<h2><i class="fa fa-coffee fa-3x"> @Model.Title</i> </h2>
+
+<div class="row">
 
     @foreach(var pie in Model.Pies)
     {
-        <h1>@pie.Name</h1>
-        <h5>@pie.Price.ToString("C")</h5>
+        <div class="card m-4" style="width:16rem">
+        <img class="card-img-top" src="@pie.ImageThumbnailUrl" alt="">
+            <div class="card-body">
+                <h4 class="card-title">@pie.Name</h4>
+                <h6 class="card-subtitle text-primary"><b>@pie.Price.ToString("C")</b></h6>
+                <p class="card-text">@pie.ShortDescription</p>
+            </div>
+        </div>
     }
+</div>
