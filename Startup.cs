@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using PiesShop.Models;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;//IConfiguration
 
 namespace PiesShop
 { 
@@ -15,13 +17,26 @@ namespace PiesShop
     //Se configuran todos los servicios que seran necesarios a travez de la aplicacion
     //1.- Configure Services 2.- Configure
     #endregion
-   
+
     public class Startup
     {
+        public  IConfiguration _configuration{get;}
+
+        public Startup(IConfiguration configuration)
+        {
+            this._configuration = configuration;
+        }
+
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddTransient<IPieRepository,MockPieRepository>();
+            services.AddTransient<IPieRepository,PieRepository>(); 
+            services.AddTransient<IPieRepository,MockPieRepository>(); 
+            //La cadena de Coneccion se agrega en appsettings.json
             
+            services.AddDbContext<AppDbContext>(op=>
+            {
+                op.UseSqlServer(_configuration.GetConnectionString("DefaultConnection"));
+            });       
             services.AddMvc();
         }
 
