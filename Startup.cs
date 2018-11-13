@@ -30,7 +30,7 @@ namespace PiesShop
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddTransient<IPieRepository,PieRepository>(); 
-            services.AddTransient<IPieRepository,MockPieRepository>(); 
+            //services.AddTransient<IPieRepository,MockPieRepository>(); 
             //La cadena de Coneccion se agrega en appsettings.json
             
             services.AddDbContext<AppDbContext>(op=>

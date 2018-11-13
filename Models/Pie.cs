@@ -1,7 +1,8 @@
 using System;
-
 namespace PiesShop.Models
 {
+    /*Si se actualiza el modelo, se debe agregar una nueva migracion(dotnet ef migrations add AddInStockPie)
+    y posterior a eso se actualiza la BD (dotnet ef database update)*/
     public class Pie
     {
         public int Id { get; set; }
@@ -12,5 +13,6 @@ namespace PiesShop.Models
         public string ImageUrl { get; set; }
         public string  ImageThumbnailUrl { get; set; }
         public bool IsPieOfTheWeek { get; set; }
+        public bool IsInStock { get; set; }
     }
 }
