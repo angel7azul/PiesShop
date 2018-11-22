@@ -25,6 +25,16 @@ namespace PiesShop.Controllers
            return View(model);
        }
 
+       public IActionResult Details(int id)
+       {
+           var pie = _pieRepository.GetPieById(id);
+           if(pie==null)
+           {
+               return NotFound();
+           }
+           return View(pie);
+       }
+
        public IActionResult MisDatos()
        {
            DateTime dato = DateTime.Now;
@@ -33,6 +43,11 @@ namespace PiesShop.Controllers
        }
 
        public IActionResult Contacto()
+       {
+           return View();
+       }
+
+       public IActionResult About()
        {
            return View();
        }

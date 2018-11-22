@@ -55,7 +55,15 @@ namespace PiesShop
             app.UseStatusCodePages();
             app.UseStaticFiles(); //wwwroot/...
             app.UseNodeModules(env);//Agregar NodeModules
-            app.UseMvcWithDefaultRoute(); // services.AddMvc() Todo va en orden, mvc al final
+            //app.UseMvcWithDefaultRoute(); services.AddMvc() Todo va en orden, mvc al final
+
+            //Personalizar la ruta
+            app.UseMvc(routes => {
+                routes.MapRoute("default","{controller}/{action}/{id?}",
+                new {controller = "Home", action = "Index"});
+            });
+
+
             /*
             Importa el orden
             npm install jquery
