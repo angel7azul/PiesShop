@@ -30,6 +30,7 @@ namespace PiesShop
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddTransient<IPieRepository,PieRepository>(); 
+            services.AddTransient<IFeedbackRepository,FeedbackRepository>();
             //services.AddTransient<IPieRepository,MockPieRepository>(); 
             //La cadena de Coneccion se agrega en appsettings.json
             
@@ -37,7 +38,7 @@ namespace PiesShop
             {
                 op.UseSqlServer(_configuration.GetConnectionString("DefaultConnection"));
             });       
-            services.AddMvc();
+            services.AddMvc();//siempre el ultimo alv
         }
 
         #region Comentarios
