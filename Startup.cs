@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using PiesShop.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;//IConfiguration
+using Microsoft.AspNetCore.Identity;
 
 namespace PiesShop
 { 
@@ -38,6 +39,9 @@ namespace PiesShop
             {
                 op.UseSqlServer(_configuration.GetConnectionString("DefaultConnection"));
             });       
+
+            services.AddIdentity<IdentityUser,IdentityRole>().AddEntityFrameworkStores<AppDbContext>();
+
             services.AddMvc();//siempre el ultimo alv
         }
 
@@ -57,6 +61,8 @@ namespace PiesShop
             app.UseStaticFiles(); //wwwroot/...
             app.UseNodeModules(env);//Agregar NodeModules
             //app.UseMvcWithDefaultRoute(); services.AddMvc() Todo va en orden, mvc al final
+
+            app.UseAuthentication();
 
             //Personalizar la ruta
             app.UseMvc(routes => {
