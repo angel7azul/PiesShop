@@ -26,15 +26,15 @@
       {
         <form asp-area="" asp-controller="Account" asp-action="Logout" id="logoutForm" method="post" class="navbar-right">
          <ul class="nav navbar-nav navbar-right">
-            <li> <a href="javascript:document.getElementById('logoutForm').submit()"> Logout Off </a></li>
+            <li class="nav-item"><a class="nav-link" href="javascript:document.getElementById('logoutForm').submit()"> Salir </a></li>
          </ul>
         </form>
       }
       else
       {
           <ul class="nav navbar-nav navbar-right">
-            <li><a id="registerLink" asp-controller="Account" asp-action="Register"> Register </a></li>
-            <li><a id="loginLink" asp-controller="Account" asp-action="Login"> Log in </a></li>
+            <li class="nav-item"><a class="nav-link"  asp-controller="Account" asp-action="Register"> <i class="fa fa-user"> Registro </i> </a> </li>
+            <li class="nav-item"><a class="nav-link" asp-controller="Account" asp-action="Login"> <i class="fa fa-sign-in "> Iniciar Sesión </i> </a></li>
           </ul>     
       }
 }

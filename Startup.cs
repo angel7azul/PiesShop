@@ -30,17 +30,26 @@ namespace PiesShop
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddTransient<IPieRepository,PieRepository>(); 
-            services.AddTransient<IFeedbackRepository,FeedbackRepository>();
-            //services.AddTransient<IPieRepository,MockPieRepository>(); 
-            //La cadena de Coneccion se agrega en appsettings.json
+            
             
             services.AddDbContext<AppDbContext>(op=>
             {
                 op.UseSqlServer(_configuration.GetConnectionString("DefaultConnection"));
-            });       
+            });   
 
-            services.AddIdentity<IdentityUser,IdentityRole>().AddEntityFrameworkStores<AppDbContext>();
+            services.AddIdentity<IdentityUser,IdentityRole>(options=>
+            {
+                options.Password.RequireDigit = false;
+                options.Password.RequiredLength = 4;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireLowercase = false;
+            }).AddEntityFrameworkStores<AppDbContext>();
+
+            services.AddTransient<IPieRepository,PieRepository>(); 
+            services.AddTransient<IFeedbackRepository,FeedbackRepository>();
+            //services.AddTransient<IPieRepository,MockPieRepository>(); 
+            //La cadena de Conexion se agrega en appsettings.json
 
             services.AddMvc();//siempre el ultimo alv
         }
