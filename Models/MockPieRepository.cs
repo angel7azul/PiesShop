@@ -35,5 +35,10 @@ namespace PiesShop.Models
         {
             return _pies.FirstOrDefault(p => p.Id ==id);
         }
+
+        public void AddPie(Pie pie)
+        {
+            
+        }
     }
 }

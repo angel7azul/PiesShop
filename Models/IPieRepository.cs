@@ -7,5 +7,6 @@ namespace PiesShop.Models
     {
         IEnumerable<Pie> GetAllPies();
         Pie GetPieById(int id);
+        void AddPie(Pie pie);
     }
 }
